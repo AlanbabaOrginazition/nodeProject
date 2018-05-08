@@ -1,0 +1,206 @@
+{% extends "3D-MODEL.html" %} {% block main %}
+<script>
+    var renderer, scene, camera, light, mesh, cylinder, plane;
+    var width, height;
+    var spotLight;
+    var invert = 1;
+    var phase = 0;
+    var stats;
+    function initThree() {
+        width = document.getElementById('canvas-frame').clientWidth;
+        height = document.getElementById('canvas-frame').clientHeight;
+        renderer = new THREE.WebGLRenderer({
+            antialias: true
+        });
+        renderer.shadowMapEnabled = true;
+        renderer.setSize(width, height);
+        document.getElementById('canvas-frame').appendChild(renderer.domElement);
+        renderer.setClearColor(0xffffff, 1.0);
+
+        stats = new Stats();
+        stats.setMode(0); // 0: fps, 1: ms
+        // 将stats的界面对应左上角
+        stats.domElement.style.position = 'absolute';
+        stats.domElement.style.left = '0px';
+        stats.domElement.style.top = '0px';
+        document.body.appendChild(stats.domElement);
+
+    }
+    function initCamera() {
+        camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
+        //camera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, 10, 1000 );
+        camera.position.x = 50;
+        camera.position.y = 20;
+        camera.position.z = 50;
+        camera.lookAt({
+            x: 20,
+            y: 0,
+            z: 20
+        });
+    }
+    function initScene() {
+        scene = new THREE.Scene();
+    }
+    function initLight() {
+        light = new THREE.AmbientLight(0xcac7c6); //0x00FF00
+        scene.add(light);
+        spotLight = new THREE.SpotLight("#ffffff", 1);
+        spotLight.castShadow = true;
+        spotLight.shadow.mapSize.width = 4096;
+        spotLight.shadow.mapSize.height = 4096;
+        spotLight.position.set(10, 60, 20);
+        //scene.add(spotLight);
+
+        var pointlight = new THREE.PointLight(0xFFFFFF);
+        pointlight.position.set(30, 10, 15);
+        scene.add(pointlight);
+    }
+    function initObject() {
+        var ballgeo = new THREE.SphereGeometry(2, 100, 100);
+        var material = new THREE.MeshPhongMaterial({
+            color: '#2194ce',
+            specular: '#111111',
+            shininess: 100
+        })
+        var ball = new THREE.Mesh(ballgeo, material);
+        ball.castShadow = true;
+        ball.position.set(5, 25, 5);
+        scene.add(ball);
+
+        var geometry = new THREE.CubeGeometry(4, 4, 4);
+        var material = new THREE.MeshLambertMaterial({
+            color: 0xff0000
+        });
+
+        mesh = new THREE.Mesh(geometry, material);
+        mesh.castShadow = true;
+        mesh.position.set(10, 10, 0);
+        mesh.rotation.set(Math.PI / 4, 0, 0);
+        scene.add(mesh);
+
+        var geometry = new THREE.CylinderGeometry(2, 2, 8, 80);
+        var material = new THREE.MeshLambertMaterial({
+            color: 0xff0000
+        });
+
+        cylinder = new THREE.Mesh(geometry, material);
+        cylinder.position.set(0, 10, 10);
+        cylinder.rotation.set(Math.PI / 4, 0, 0);
+        cylinder.castShadow = true;
+        scene.add(cylinder);
+
+
+        var plane_geometry = new THREE.CubeGeometry(40, 1, 40);
+        var plane_material = new THREE.MeshLambertMaterial({
+            color: 0xcac7c6
+        });
+
+        plane = new THREE.Mesh(plane_geometry, plane_material);
+        plane.receiveShadow = true;
+        plane.position.set(10, 2, 10);
+        scene.add(plane);
+    }
+
+    //移动光源  
+    function motionLight(light) {
+        if (phase > 2 * Math.PI) {
+            invert = invert * -1;
+            phase -= 2 * Math.PI;
+        } else {
+            phase += 0.03;
+        }
+        light.position.z = +(7 * (Math.sin(phase)));
+        light.position.x = +(14 * (Math.cos(phase)));
+        if (invert < 0) {
+            var pivot = 14;
+            light.position.x = (invert * (light.position.x - pivot)) + pivot;
+        }
+    }
+    //鼠标控制事件初始化
+    var controls;
+    function initCotrols() {
+        controls = new THREE.OrbitControls(camera);
+    }
+    function initAxis() {
+        var axisHelper = new THREE.AxisHelper(500); // 500 is size
+        scene.add(axisHelper);
+    }
+    function threeStart() {
+        initThree();
+        initCamera();
+        initScene();
+        initLight();
+        initObject();
+        //initTween()
+        initCotrols();
+        initAxis();
+        loadobj();
+        animation();
+    }
+    function animation() {
+        renderer.render(scene, camera);
+        requestAnimationFrame(animation);
+        //motionLight(spotLight);  
+        stats.update();
+        //controls.update();
+        //TWEEN.update();
+    }
+
+
+
+    function loadobj() {
+        var manager = new THREE.LoadingManager();
+        manager.onProgress = function (item, loaded, total) {
+
+            console.log(item, loaded, total);
+
+        };
+
+        var texture = new THREE.Texture();
+
+        var onProgress = function (xhr) {
+            if (xhr.lengthComputable) {
+                var percentComplete = xhr.loaded / xhr.total * 100;
+                console.log(Math.round(percentComplete, 2) + '% downloaded');
+            }
+        };
+
+        var onError = function (xhr) {
+        };
+
+        var mtlLoader = new THREE.MaterialLoader();
+        var materials1;
+        mtlLoader.load( '../static/3d-object/hualishu.mtl', function( materials ) {  
+            console.log(materials);
+            materials1 = materials;
+            materials1.preload();
+        })  
+        /*var loader = new THREE.ImageLoader(manager);
+        loader.load('../static/img/tt.jpg', function (image) {
+
+            texture.image = image;
+            texture.needsUpdate = true;
+
+        });*/
+
+
+        var loader = new THREE.OBJLoader(manager);
+        loader.setMaterials( materials1 );
+        loader.load('../static/3d-object/hualishu/hualishu.obj', function (object) {
+            /*object.traverse(function (child) {
+                if (child instanceof THREE.Mesh) {
+                    child.material.map = texture;
+                }
+            });*/
+            //object.scale.set(0.1, 0.1, 0.1);
+            object.position.y = 15;
+            object.position.x = 30;
+            scene.add(object);
+
+        }, onProgress, onError);
+    }
+    threeStart();
+
+</script>
+
+{% endblock %}

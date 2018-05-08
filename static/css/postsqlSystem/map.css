@@ -1,0 +1,27 @@
+.main{
+    position: relative;
+    top:50px;
+    left:0;
+    height: 90%;
+    width: 100%;
+    z-index:0;
+   background: #fff;
+}  
+#map-main{
+    height: 100%;
+    cursor: url(/static/img/openhand.cur) 8 8, default;
+    position: relative;
+}
+#map-layer{
+    position: absolute;
+    left:0;
+    top:0;
+}
+.toolbar{
+    position: absolute;
+    top:60px;
+}
+.btn-fixed{
+    position: relative;
+    left: 10px;
+}

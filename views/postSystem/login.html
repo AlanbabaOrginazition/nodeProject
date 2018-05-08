@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="learn javascript by www.liaoxuefeng.com">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/postsqlSystem/login.css">
+    <script src="/static/js/jquery/jquery-2.7.1.min.js"></script>
+
+    <script src="/static/js/D3/d3.js"></script>
+    <script src="/static/js/postSystem/login.js"></script>
+</head>
+
+<body>
+    <div class="container container-small">
+        <h2 class="form-signin-heading">欢迎登陆</h2>
+        <form role="form" action="vertify" method="post">
+            <div class="form-group">
+                <label class="control-label">账户:</label>
+                <input type="text" class="form-control" placeholder="Email address" name="username" required autofocus>
+            </div>
+            <div class="form-group">
+                <label class="control-label">密码:</label>
+                <input type="password" class="form-control" name="password" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" type="submit">登录</button>
+            </div>
+        </form>
+        <div class="canvas">
+        <canvas id="snow"></canvas>
+        </div>
+        {% block main %} {% endblock %}
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+{% extends "postSystem/postsqlSysBase.html" %} 
+
+{% block css %}
+<link rel="stylesheet" href="/static/css/postsqlSystem/map.css"> 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+{% endblock %} 
+
+{% block javascript %}
+<script src="/static/js/postSystem/map.js"></script> 
+<script src="/static/js/D3/d3.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+{% endblock %} 
+
+{% block header %} 
+<li>
+    <a href="Canvas">Canvas特效</a>
+</li>
+<li>
+    <a href="##">SVG特效</a>
+</li>
+<li>
+    <a href="sockt">WebSockt即时通信</a>
+</li>
+<li  class="dropdown-toggle active">
+    <a href="Map">地图  <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li><a href="dynPoint">leaflet地图动态点</a></li>
+        <li><a herf="#">哈哈2</a></li>
+        <li><a herf="#">哈哈3</a></li>
+    </ul>
+</li>
+<li>
+    <a href="##">敬请期待</a>
+</li>
+{% endblock %}
+
+{% block main %}
+<div class="container-fluid main">
+    <div id="map-main">
+        <div id="map-layer">
+
+        </div>
+    </div>
+    <div class="toolbar">
+        <button id="zoomout" class="btn  btn-block btn-success btn-sm btn-fixed">放大</button>
+        <button id="zoomin" class="btn btn-block btn-success btn-sm btn-fixed">缩小</button>
+        <button id="download" class="btn btn-block btn-info btn-sm btn-fixed">下载地图切片</button>  
+    </div>
+    
+</div>
+{% endblock %}

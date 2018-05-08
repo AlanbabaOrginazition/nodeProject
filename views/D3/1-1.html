@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/css/D3/1-1.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="/static/css/jquery-ui.theme.css">
+    <script src="/static/js/jquery/jquery-2.7.1.min.js"></script>
+    <script src="/static/js/D3/d3.js"></script>
+    <script src="/static/js/D3/1-1.js"></script>
+    <script src="/static/js/jquery/jquery-ui.js"></script>
+    <script src="/static/js/popper.js"></script>
+    <script src="/static/js/bootstrap.js"></script> 
+    <script src="/static/js/template-web.js"></script>
+</head>
+
+<body>
+    <button id="transfer">初始化</button>
+    <input type="text" id="num"  value="只读" disabled="disabled"/>
+    <button id="insert">插入数据</button>
+    <button id="scale">坐标轴</button>
+    <button id="scatter">散点图</button>
+    <button id="line">线段生成器</button>
+    <button id="area">区域生成器</button>
+    <button id="arc">弧生成器</button>
+    <button id="symbol">符号生成器</button>
+    <button id="line_chart">折线图</button>
+    <button id="weather">天气</button>
+    <input type="text" id="city" class="input_city"/>
+    <button id="transition">动画(过渡)</button>
+    <button id="postsql">postsql</button>
+    <div><span>缓冲区条件：学校周围<input id="distance" type="text"/>需要<select id="neednum"><option value=1>1</option><option value=2>2</option><option value=3>3</option></select></span></div>
+    <div id="contain-table"></div>
+    <p></p>
+    <p></p>
+    <p></p>
+</body>
+</html>

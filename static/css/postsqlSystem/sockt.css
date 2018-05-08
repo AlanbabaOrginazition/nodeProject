@@ -1,0 +1,45 @@
+.main-chat{
+    position: relative;
+    height: 896px;
+    top: 51px;
+}
+.content-list{
+    position: relative;
+    height: 100%;
+    width:70%;
+    display: inline-block;
+    border-right: 2px solid black;
+}
+.table-chat{
+    position: relative;
+    left:100px;
+    width:600px;
+    height: 400px;
+    top:60px;
+    background: #ccc;
+}
+#chat-content{
+    height: 90%;
+    overflow-y: auto;
+    padding: 5px;
+}
+#chat-content p{
+    text-align: center;
+    font-size: 8px;
+}
+.chat-bottom{
+    width:100%;
+}
+#chat-text{
+    width:85%;
+}
+#userlist{
+    position: absolute;
+    width: 30%;
+    right:0;
+    bottom: 0;
+    padding: 20px;
+}
+#userlist label,#chat-content label{
+    display: block;
+}

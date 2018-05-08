@@ -1,0 +1,58 @@
+{% extends "postSystem/postsqlSysBase.html" %} 
+
+{% block css %}
+
+<link rel="stylesheet" href="/static/css/leaflet/leaflet.css" />
+<link rel="stylesheet" href="/static/css/postsqlSystem/dynPoint/dynPoint.css" />
+<link rel="stylesheet" href="/static/css/postsqlSystem/dynPoint/leaflet.fullscreen.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
+{% endblock %} 
+
+{% block javascript %}
+<script src="/static/js/leaflet/leaflet-1.0.0.js"></script> 
+<script src="/static/js/leaflet/proj4-compressed.js"></script> 
+<script src="/static/js/leaflet/p.js"></script> 
+
+<script src="/static/js/leaflet/esri-leaflet.js"></script> 
+<script src="/static/js/leaflet/leaflet.ChineseTmsProviders.js"></script>
+<script src="/static/js/D3/d3.js"></script>
+<script src="/static/js/postSystem/dynPoint/leaflet-extend.js"></script>
+<script src="/static/js/postSystem/dynPoint/leaflet.fullscreen.js"></script>
+<script src="/static/js/postSystem/dynPoint.js"></script>
+<script src="/static/js/postSystem/webpackJS/main.js"></script> 
+{% endblock %} 
+
+{% block header %} 
+<li>
+    <a href="Canvas">Canvas特效</a>
+</li>
+<li>
+    <a href="##">SVG特效</a>
+</li>
+<li>
+    <a href="sockt">WebSockt即时通信</a>
+</li>
+<li  class="dropdown-toggle active">
+    <a href="Map">地图  <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li class="active"><a href="dynPoint">leaflet地图动态点</a></li>
+        <li><a herf="#">哈哈2</a></li>
+        <li><a herf="#">哈哈3</a></li>
+    </ul>
+</li>
+<li>
+    <a href="##">敬请期待</a>
+</li>
+{% endblock %}
+
+{% block main %}
+<div class="container-fluid container-main">
+    <div id="map-main">
+        <div  id="MapToolbar"></div>
+        <div id="map-canvas"></div>
+    </div> 
+    <!--<div id="transferMap" class="extends-transfer-map extends-transfer-map-hidden">
+        <div id="map-canvas"></div>
+    </div>-->
+</div>
+{% endblock %}

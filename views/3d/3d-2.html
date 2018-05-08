@@ -1,0 +1,89 @@
+{% extends "3D-MODEL.html" %} {% block main %}
+<script>
+    var renderer;  //移动物体
+    var stats;
+    function initThree() {
+        width = document.getElementById('canvas-frame').clientWidth;
+        height = document.getElementById('canvas-frame').clientHeight;
+        renderer = new THREE.WebGLRenderer({
+            antialias: true
+        });
+        renderer.setSize(width, height);
+        document.getElementById('canvas-frame').appendChild(renderer.domElement);
+        renderer.setClearColor(0xFFFFFF, 1.0);
+
+        stats = new Stats();
+        stats.setMode(0); // 0: fps, 1: ms
+        // 将stats的界面对应左上角
+        stats.domElement.style.position = 'absolute';
+        stats.domElement.style.left = '0px';
+        stats.domElement.style.top = '0px';
+        document.body.appendChild(stats.domElement);
+
+    }
+    var camera;
+    function initCamera() {
+        camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
+        //camera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, 10, 1000 );
+        camera.position.x = 0;
+        camera.position.y = 0;
+        camera.position.z = 241;
+        camera.up.x = 0;
+        camera.up.y = 1;
+        camera.up.z = 0;
+        camera.lookAt({
+            x: 0,
+            y: 0,
+            z: 0
+        });
+    }
+    var scene;
+    function initScene() {
+        scene = new THREE.Scene();
+    }
+    var light;
+    function initLight() {
+        light = new THREE.AmbientLight(0xFF0000); //0x00FF00
+        light.position.set(100, 100, 200);
+        //scene.add(light);
+        light = new THREE.PointLight(0x00FF00);
+        light.position.set(0, 0, 300);
+        scene.add(light);
+    }
+    var cube, mesh;
+    function initObject() {
+        //var geometry = new THREE.SphereGeometry(100, 100, 100); //球
+        var geometry = new THREE.CylinderGeometry( 70,100,200,100,100); //圆台
+        var material = new THREE.MeshLambertMaterial({ color: 0xFFFFFF });
+        mesh = new THREE.Mesh(geometry, material);
+        mesh.position = new THREE.Vector3(0, 0, 0);
+        scene.add(mesh);
+
+        // renderer.render(scene,camera);
+    }
+    //初始化动画引擎
+    function initTween() {
+        new TWEEN.Tween(mesh.position)
+            .to({ z: -1000 }, 3000).repeat(Infinity).start();
+    }
+
+    function threeStart() {
+        initThree();
+        initCamera();
+        initScene();
+        initLight();
+        initObject();
+        initTween()
+        animation();
+    }
+    function animation() {
+        renderer.render(scene, camera);
+        requestAnimationFrame(animation);
+        stats.update();
+        TWEEN.update();
+    }
+    threeStart();
+
+</script>
+
+{% endblock %}

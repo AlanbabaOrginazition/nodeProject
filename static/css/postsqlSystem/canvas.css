@@ -1,0 +1,41 @@
+.main{
+    position: fixed;
+    top:50px;
+    left:0;
+    height: 900px;
+    width: 100%;
+    z-index:0;
+   
+   /*cursor: url(http://api0.map.bdimg.com/images/openhand.cur) 8 8, default;*/
+}
+
+#mouse,#light,#point,#smoke_canvas{
+    position: absolute;
+    top: 0;
+    left: 15px;
+    z-index:1;
+}
+#map-main{
+    z-index:10;
+    position: absolute;
+    top: 0;
+    left: 15px;
+}
+#btn{  
+    left:20px;
+}
+.btn-fixed{
+    cursor: pointer;
+    position: absolute;
+    top:20px;
+    z-index:20;
+}
+#smoke{
+    left:150px;
+}
+#zoomout{
+    left:250px; 
+}
+#zoomin{
+    left:350px;
+}

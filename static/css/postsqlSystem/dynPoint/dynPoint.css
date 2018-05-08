@@ -1,0 +1,104 @@
+.container-main{
+    position: relative;
+    top: 50px;
+    left: 0;
+    height: 89%;
+    width: 100%;
+    z-index: 0;
+    background: #fff;
+}
+#map-main{
+    height:100%;
+    margin: 0 -15px 0 -15px;
+    background: rgb(255, 255, 255);
+}
+div.leaflet-control-basemap{
+    margin: 10px 10px 0 0;
+    border: 2px solid rgba(0,0,0,0.2);
+    background-clip: padding-box;
+    background: #fff;
+    border-radius: 5px;
+}   
+a.leaflet-control-basemap-toggle{
+    width: 44px;
+    height: 44px;
+    background-image: url(images/layers.png);
+    color: #0078A8;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    display: block;
+}
+form.leaflet-control-layers-list{
+    display: none;
+}
+.leaflet-control-basemap-expand{
+    padding: 6px 10px 6px 6px;
+    color: #333;
+    background: #fff;
+}
+.leaflet-control-basemap-expand a{
+    display: none;
+}
+.leaflet-control-basemap-expand .leaflet-control-layers-list{
+    display: block;
+}
+.map-toobar{
+    position: absolute;
+    right: 20px;
+    bottom: 50px;
+    z-index: 600;
+    background: #d8d7d7;
+    width: 30px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+.map-toobar div{
+    display: block;
+    padding: 5px;
+    box-shadow: -1px 2px #c1b9b9;
+}
+.map-toobar div[class="active"]{
+    background: rgb(184, 185, 184);
+}
+.map-toobar div:first-child{
+    border-top-left-radius:6px;
+}
+.map-toobar div:last-child{
+    border: none;
+    border-bottom-left-radius: 6px;
+}
+.map-toobar div:hover{
+    background: rgb(184, 185, 184);
+}
+
+.extends-transfer-map-hidden{
+    visibility: hidden;
+}
+.extends-transfer-map-close{
+    float: right;
+    color: #d0ee47;
+    z-index:600;
+    position: relative;
+}
+.extends-transfer-map-close:hover{
+    color:red;
+}
+.extends-transfer-map-canvas{
+    position: absolute;
+    z-index:500;
+}
+@media (min-width: 321px){
+
+}
+.extends-transfer-map{
+    position: absolute;
+    width:calc(80%);
+    height:calc(80%);
+    top:calc(20% / 2);
+    left:calc(20% / 2);
+    z-index:1000;
+    background:#0078A8;
+    border:10px solid transparent;
+    -webkit-border-image:url(../../../img/blue1.jpg) 45 stretch;
+    user-select: none;
+}

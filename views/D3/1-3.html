@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ title }}</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <svg width="100%" height="100%">
+        <image xlink:href="../static/img/liuzixuan.JPG" x="300" y="300" width="120" height="120" clip-path="url(#clipPath)"/>
+        <defs>
+            <clipPath id="clipPath">
+                <circle cx="360" cy="360" r="40"/>
+            </clipPath>
+        </defs>
+        <path d="M50,50 H300 M50,50 V300" style="stroke:blue;stroke-width:2"></path>
+        <path d="M60,50 V60 M60,60 H50" style="stroke:black;stroke-width:1"></path>
+        <path d="M600,50 H350 M600,50 V300" style="stroke:blue;stroke-width:2"></path>
+        <path d="M590,50 V60 M590,60 H600" style="stroke:black;stroke-width:1"></path>
+        <path d="M50,400 V700 M50,700 H300" style="stroke:blue;stroke-width:2"></path>
+        <path d="M50,690 H60 M60,690 V700" style="stroke:black;stroke-width:1"></path>
+        <path d="M600,400 V700 M600,700 H400" style="stroke:blue;stroke-width:2"></path>
+        <path d="M600,690 H590 M590,690 V700" style="stroke:black;stroke-width:1"></path>
+        <path d="M700,50 L800,150 M800,150 L900,50" style="stroke:blue;stroke-width:2"></path>
+        <path d="M790,140 L800,130 M800,130 L810,140" style="stroke:black;stroke-width:1"></path>
+        <path d="M700,350 L800,250 M800,250 L900,350" style="stroke:blue;stroke-width:2"></path>
+        <path d="M790,260 L800,270 M800,270 L810,260" style="stroke:black;stroke-width:1"></path>
+        <text x="360" y="420" dx="-2px" dy="5px" textLength="60" style="stroke: red;stroke-width:0.05em;fill:red">猪</text>
+</body>
+
+</html>
